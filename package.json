@@ -19,5 +19,8 @@
   "homepage": "https://github.com/zapmi/LIRI-bot#readme",
   "dependencies": {
     "node-spotify-api": "^1.1.1"
+  },
+  "devDependencies": {
+    "dotenv-webpack": "^1.7.0"
   }
 }
