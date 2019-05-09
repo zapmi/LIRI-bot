@@ -10,9 +10,9 @@ var spotify = new Spotify({
     id: keys.spotify.id,
     secret: keys.spotify.secret
   });
-//   var input1 = process.argv[2];
+  var trackTitle = process.argv[2];
 
-spotify.search({ type: 'track', query: 'All the Small Things' }, function(err, data) {
+spotify.search({ type: 'track', query: trackTitle }, function(err, data) {
   if (err) {
     return console.log('Error occurred: ' + err);
   }
