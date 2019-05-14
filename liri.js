@@ -29,16 +29,22 @@ function concertThis() {
 function spotifyThisSong() {
   var song = userInput;
   spotify.search({ type: 'track', query: song, limit: 1 }, function (err, data) {
-    if (err) {
+    if (song == "a") {
+      console.log("NOT A SONG")
+
+      // console.log(data.tracks.items)
+    }
+    else if (err) {
       console.log('Error occurred: ' + err);
     }
+
     else {
       for (var i = 0; i < data.tracks.items.length; i++) {
         console.log('Artist: ' + data.tracks.items[i].artists[0].name);
         console.log('Song name: ' + data.tracks.items[i].name);
         console.log('Preview: ' + data.tracks.items[i].preview_url);
         console.log('Album: ' + data.tracks.items[i].album.name);
-        
+
 
       }
 
