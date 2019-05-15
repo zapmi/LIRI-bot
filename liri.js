@@ -1,12 +1,14 @@
 require("dotenv").config();
 
-var keys = require("./keys.js");
+const keys = require("./keys.js");
 // var axios = require("axios");
-var Spotify = require('node-spotify-api');
-var spotify = new Spotify(keys.spotify);
+const Spotify = require('node-spotify-api');
+const spotify = new Spotify(keys.spotify);
+const request = require("request");
+const moment = require('moment');
 
-var operation = process.argv[2];
-var userInput = process.argv.splice(3, process.argv.length).join(" ");
+let operation = process.argv[2];
+let userInput = process.argv.splice(3, process.argv.length).join(" ");
 
 if (operation == 'spotify-this-song') {
   spotifyThisSong();
@@ -21,13 +23,25 @@ if (operation == 'spotify-this-song') {
 //concert-this
 //node liri.js concert-this <artist/band name here>
 function concertThis() {
-  console.log("hello concert");
+  let artist = userInput;
+  let queryURL = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp";
+  request(queryURL, function (error, response, body) {
+    var result = JSON.parse(body)[0];
+    // console.log(result);
+    console.log("Venue: " + result.venue.name);
+    console.log("Venue Location: " + result.venue.city + ", " + result.venue.country);
+    // console.log("Date of Event: " + moment(result.datetime).format("MMM Do YY"));
+    console.log("Event date: " + moment(result.datetime).format("MMM Do YYYY"));
+    // console.log(releaseDate);
+  });
 }
+
+// console.log(bandsApi);
 
 //spotify-this-song
 //node liri.js spotify-this-song '<song name here>'
 function spotifyThisSong() {
-  var song = userInput;
+  let song = userInput;
   spotify.search({ type: 'track', query: song, limit: 1 }, function (err, data) {
     if (song == "a") {
       console.log("NOT A SONG")
@@ -39,7 +53,7 @@ function spotifyThisSong() {
     }
 
     else {
-      for (var i = 0; i < data.tracks.items.length; i++) {
+      for (let i = 0; i < data.tracks.items.length; i++) {
         console.log('Artist: ' + data.tracks.items[i].artists[0].name);
         console.log('Song name: ' + data.tracks.items[i].name);
         console.log('Preview: ' + data.tracks.items[i].preview_url);
