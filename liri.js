@@ -75,15 +75,13 @@ function movieThis() {
 
     // console.log(result);
     console.log("Title: " + result.Title);
-    console.log("Release Date: " + result.Released);
+    console.log("Release Year: " + result.Year);
     console.log("IMDB rating: " + result.imdbRating);
     console.log("Rotten Tomatoes rating: " + result.Ratings[1].Value);
     console.log("Country Produced in: " + result.Country);
     console.log("Language: " + result.Language);
     console.log("Plot: " + result.Plot);
     console.log("Actors: " + result.Actors);
-    // console.log("Release Date: " + moment(result.Released).format("MMM Do YYYY"));
-
   });
 }
 
