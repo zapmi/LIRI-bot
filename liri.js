@@ -1,7 +1,7 @@
 require("dotenv").config();
 
 const keys = require("./keys.js");
-// var axios = require("axios");
+const axios = require("axios");
 const Spotify = require('node-spotify-api');
 const spotify = new Spotify(keys.spotify);
 const request = require("request");
@@ -30,13 +30,10 @@ function concertThis() {
     // console.log(result);
     console.log("Venue: " + result.venue.name);
     console.log("Venue Location: " + result.venue.city + ", " + result.venue.country);
-    // console.log("Date of Event: " + moment(result.datetime).format("MMM Do YY"));
     console.log("Event date: " + moment(result.datetime).format("MMM Do YYYY"));
-    // console.log(releaseDate);
+
   });
 }
-
-// console.log(bandsApi);
 
 //spotify-this-song
 //node liri.js spotify-this-song '<song name here>'
@@ -70,8 +67,26 @@ function spotifyThisSong() {
 //movie-this
 //node liri.js movie-this '<movie name here>'
 function movieThis() {
-  console.log("hello movie");
+  let movie = userInput;
+
+  let queryURL = "http://www.omdbapi.com/?t=" + movie + "&apikey=trilogy";
+  request(queryURL, function (error, response, body) {
+    var result = JSON.parse(body);
+
+    // console.log(result);
+    console.log("Title: " + result.Title);
+    console.log("Release Date: " + result.Released);
+    console.log("IMDB rating: " + result.imdbRating);
+    console.log("Rotten Tomatoes rating: " + result.Ratings[1].Value);
+    console.log("Country Produced in: " + result.Country);
+    console.log("Language: " + result.Language);
+    console.log("Plot: " + result.Plot);
+    console.log("Actors: " + result.Actors);
+    // console.log("Release Date: " + moment(result.Released).format("MMM Do YYYY"));
+
+  });
 }
+
 
 //do-what-it-says
 //node liri.js do-what-it-says
