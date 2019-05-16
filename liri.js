@@ -6,9 +6,11 @@ const Spotify = require('node-spotify-api');
 const spotify = new Spotify(keys.spotify);
 const request = require("request");
 const moment = require('moment');
+const fs = require("fs");
 
 let operation = process.argv[2];
 let userInput = process.argv.splice(3, process.argv.length).join(" ");
+let name;
 
 if (operation == 'spotify-this-song') {
   spotifyThisSong();
@@ -22,17 +24,30 @@ if (operation == 'spotify-this-song') {
 
 //concert-this
 //node liri.js concert-this <artist/band name here>
+// function concertThis() {
+//   let artist = userInput;
+//   let queryURL = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp";
+//   request(queryURL, function (error, response, body) {
+//     var result = JSON.parse(body)[0];
+//     // console.log(result);
+//     console.log("Venue: " + result.venue.name);
+//     console.log("Venue Location: " + result.venue.city + ", " + result.venue.country);
+//     console.log("Event date: " + moment(result.datetime).format("MMM Do YYYY"));
+
+//   });
+// }
+
 function concertThis() {
   let artist = userInput;
-  let queryURL = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp";
-  request(queryURL, function (error, response, body) {
-    var result = JSON.parse(body)[0];
-    // console.log(result);
-    console.log("Venue: " + result.venue.name);
-    console.log("Venue Location: " + result.venue.city + ", " + result.venue.country);
-    console.log("Event date: " + moment(result.datetime).format("MMM Do YYYY"));
-
-  });
+  axios.get("https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp").then(function(response){
+    for (var i=0; i < response.data.length; i++){
+      // var result = JSON.parse(response.data);
+      console.log(response.data[0].venue.name)
+      // console.log("Venue: " + response.data.offers.venue);
+      // console.log("Venue Location: " + result.venue.city + ", " + result.venue.country);
+//     console.log("Event date: " + moment(result.datetime).format("MMM Do YYYY"));
+    }
+  })
 }
 
 //spotify-this-song
@@ -89,7 +104,18 @@ function movieThis() {
 //do-what-it-says
 //node liri.js do-what-it-says
 function doWhatItSays() {
-  console.log("hello mom");
+  fs.readFile("./random.txt", "utf8", function (err, data) {
+    if (err){
+      throw err;
+    }
+    data = data.split(",");
+    operation = data[0];
+    userInput = data[1];
+       console.log(data);
+
+
+  });
+  // console.log("hello mom");
 }
 
 
