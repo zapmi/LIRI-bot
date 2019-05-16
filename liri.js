@@ -39,14 +39,15 @@ if (operation == 'spotify-this-song') {
 
 function concertThis() {
   let artist = userInput;
-  axios.get("https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp").then(function(response){
-    for (var i=0; i < response.data.length; i++){
-      // var result = JSON.parse(response.data);
-      console.log(response.data[0].venue.name)
-      // console.log("Venue: " + response.data.offers.venue);
-      // console.log("Venue Location: " + result.venue.city + ", " + result.venue.country);
-//     console.log("Event date: " + moment(result.datetime).format("MMM Do YYYY"));
-    }
+  axios.get("https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp").then(function (response) {
+    // for (var i=0; i < response.data.length; i++){
+    // var result = JSON.parse(response.data[i]);
+    // console.log(response.data);
+
+    console.log("Venue: " + response.data[0].venue.name);
+    console.log("Venue Location: " + response.data[0].venue.city + ", " + response.data[0].venue.country);
+    console.log("Event date: " + moment(response.data[0].datetime).format("MMM Do YYYY"));
+    // }
   })
 }
 
@@ -81,22 +82,40 @@ function spotifyThisSong() {
 
 //movie-this
 //node liri.js movie-this '<movie name here>'
+// function movieThis() {
+//   let movie = userInput;
+
+//   let queryURL = "http://www.omdbapi.com/?t=" + movie + "&apikey=trilogy";
+//   request(queryURL, function (error, response, body) {
+//     var result = JSON.parse(body);
+
+//     // console.log(result);
+//     console.log("Title: " + result.Title);
+//     console.log("Release Year: " + result.Year);
+//     console.log("IMDB rating: " + result.imdbRating);
+//     console.log("Rotten Tomatoes rating: " + result.Ratings[1].Value);
+//     console.log("Country Produced in: " + result.Country);
+//     console.log("Language: " + result.Language);
+//     console.log("Plot: " + result.Plot);
+//     console.log("Actors: " + result.Actors);
+//   });
+// }
+
 function movieThis() {
   let movie = userInput;
+  axios.get("http://www.omdbapi.com/?t=" + movie + "&apikey=trilogy").then(function (response) {
+    // for (var i=0; i < response.data.length; i++){
+    // console.log(response.data);
+    console.log("Title: " + response.data.Title);
+    console.log("Release Year: " + response.data.Year);
+    console.log("IMDB rating: " + response.data.imdbRating);
+    console.log("Rotten Tomatoes rating: " + response.data.Ratings[1].Value);
+    console.log("Country Produced in: " + response.data.Country);
+    console.log("Language: " + response.data.Language);
+    console.log("Plot: " + response.data.Plot);
+    console.log("Actors: " + response.data.Actors);
+    // }
 
-  let queryURL = "http://www.omdbapi.com/?t=" + movie + "&apikey=trilogy";
-  request(queryURL, function (error, response, body) {
-    var result = JSON.parse(body);
-
-    // console.log(result);
-    console.log("Title: " + result.Title);
-    console.log("Release Year: " + result.Year);
-    console.log("IMDB rating: " + result.imdbRating);
-    console.log("Rotten Tomatoes rating: " + result.Ratings[1].Value);
-    console.log("Country Produced in: " + result.Country);
-    console.log("Language: " + result.Language);
-    console.log("Plot: " + result.Plot);
-    console.log("Actors: " + result.Actors);
   });
 }
 
@@ -105,13 +124,13 @@ function movieThis() {
 //node liri.js do-what-it-says
 function doWhatItSays() {
   fs.readFile("./random.txt", "utf8", function (err, data) {
-    if (err){
+    if (err) {
       throw err;
     }
     data = data.split(",");
     operation = data[0];
     userInput = data[1];
-       console.log(data);
+    console.log(data);
 
 
   });
