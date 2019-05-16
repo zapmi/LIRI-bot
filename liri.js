@@ -22,21 +22,6 @@ if (operation == 'spotify-this-song') {
   doWhatItSays();
 }
 
-//concert-this
-//node liri.js concert-this <artist/band name here>
-// function concertThis() {
-//   let artist = userInput;
-//   let queryURL = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp";
-//   request(queryURL, function (error, response, body) {
-//     var result = JSON.parse(body)[0];
-//     // console.log(result);
-//     console.log("Venue: " + result.venue.name);
-//     console.log("Venue Location: " + result.venue.city + ", " + result.venue.country);
-//     console.log("Event date: " + moment(result.datetime).format("MMM Do YYYY"));
-
-//   });
-// }
-
 function concertThis() {
   let artist = userInput;
   axios.get("https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp").then(function (response) {
@@ -80,27 +65,6 @@ function spotifyThisSong() {
   });
 }
 
-//movie-this
-//node liri.js movie-this '<movie name here>'
-// function movieThis() {
-//   let movie = userInput;
-
-//   let queryURL = "http://www.omdbapi.com/?t=" + movie + "&apikey=trilogy";
-//   request(queryURL, function (error, response, body) {
-//     var result = JSON.parse(body);
-
-//     // console.log(result);
-//     console.log("Title: " + result.Title);
-//     console.log("Release Year: " + result.Year);
-//     console.log("IMDB rating: " + result.imdbRating);
-//     console.log("Rotten Tomatoes rating: " + result.Ratings[1].Value);
-//     console.log("Country Produced in: " + result.Country);
-//     console.log("Language: " + result.Language);
-//     console.log("Plot: " + result.Plot);
-//     console.log("Actors: " + result.Actors);
-//   });
-// }
-
 function movieThis() {
   let movie = userInput;
   axios.get("http://www.omdbapi.com/?t=" + movie + "&apikey=trilogy").then(function (response) {
@@ -134,15 +98,9 @@ function doWhatItSays() {
 
 
   });
-  // console.log("hello mom");
+ 
 }
 
 
-
-
-
-
-
-
-module.exports = spotifyThisSong;
+// module.exports = spotifyThisSong;
 /********************************************************************************* */
