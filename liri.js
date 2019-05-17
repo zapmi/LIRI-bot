@@ -45,7 +45,7 @@ function spotifyThisSong() {
     // console.log(data.tracks.items)
   }
   spotify.search({ type: 'track', query: song, limit: 1 }, function (err, data) {
-    
+
     if (err) {
       console.log('Error occurred: ' + err);
     }
@@ -72,9 +72,9 @@ function movieThis() {
   // let song = userInput;
   if (movie === "") {
     movie = "Mr. Nobody";
+    console.log("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
     console.log("If you haven't watched Mr. Nobody, then you should: http://www.imdb.com/title/tt0485947/");
-    console.log("It's on Netflix!")
-
+    console.log("It's on Netflix!");
     // console.log(data.tracks.items)
   }
   axios.get("http://www.omdbapi.com/?t=" + movie + "&apikey=trilogy").then(function (response) {
@@ -112,11 +112,9 @@ function doWhatItSays() {
     if (operation == 'spotify-this-song') {
       return spotifyThisSong();
     } else if (operation == 'concert-this') {
-       return concertThis();
+      return concertThis();
     } else if (operation == 'movie-this') {
       return movieThis();
-    } else if (operation == 'do-what-it-says') {
-      return doWhatItSays();
     }
 
   });
