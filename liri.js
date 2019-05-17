@@ -26,10 +26,11 @@ function concertThis() {
   let artist = userInput;
   axios.get("https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp").then(function (response) {
     // console.log(response.data);
-
+    console.log("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
     console.log("Venue: " + response.data[0].venue.name);
     console.log("Venue Location: " + response.data[0].venue.city + ", " + response.data[0].venue.country);
     console.log("Event date: " + moment(response.data[0].datetime).format("MMM Do YYYY"));
+    console.log("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
     // }
   })
 }
@@ -50,10 +51,12 @@ function spotifyThisSong() {
 
     else {
       for (let i = 0; i < data.tracks.items.length; i++) {
+        console.log("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
         console.log('Artist: ' + data.tracks.items[i].artists[0].name);
         console.log('Song name: ' + data.tracks.items[i].name);
         console.log('Preview: ' + data.tracks.items[i].preview_url);
         console.log('Album: ' + data.tracks.items[i].album.name);
+        console.log("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
 
 
       }
@@ -68,6 +71,7 @@ function movieThis() {
   axios.get("http://www.omdbapi.com/?t=" + movie + "&apikey=trilogy").then(function (response) {
     // for (var i=0; i < response.data.length; i++){
     // console.log(response.data);
+    console.log("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
     console.log("Title: " + response.data.Title);
     console.log("Release Year: " + response.data.Year);
     console.log("IMDB rating: " + response.data.imdbRating);
@@ -76,6 +80,7 @@ function movieThis() {
     console.log("Language: " + response.data.Language);
     console.log("Plot: " + response.data.Plot);
     console.log("Actors: " + response.data.Actors);
+    console.log("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
     // }
 
   });
@@ -94,7 +99,7 @@ function doWhatItSays() {
     userInput = data[1];
     // console.log(data[0] + " " + data[1]);
     spotifyThisSong();
-    
+
   });
 
 }
