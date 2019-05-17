@@ -10,7 +10,7 @@ const fs = require("fs");
 
 let operation = process.argv[2];
 let userInput = process.argv.splice(3, process.argv.length).join(" ");
-let name;
+// let name;
 
 if (operation == 'spotify-this-song') {
   spotifyThisSong();
@@ -39,13 +39,14 @@ function concertThis() {
 //node liri.js spotify-this-song '<song name here>'
 function spotifyThisSong() {
   let song = userInput;
-  spotify.search({ type: 'track', query: song, limit: 1 }, function (err, data) {
-    if (song == "a") {
-      console.log("NOT A SONG")
+  if (song === undefined) {
+    song = "The Sign ace of Base";
 
-      // console.log(data.tracks.items)
-    }
-    else if (err) {
+    // console.log(data.tracks.items)
+  }
+  spotify.search({ type: 'track', query: song, limit: 1 }, function (err, data) {
+    
+    if (err) {
       console.log('Error occurred: ' + err);
     }
 
@@ -98,7 +99,17 @@ function doWhatItSays() {
     operation = data[0];
     userInput = data[1];
     // console.log(data[0] + " " + data[1]);
-    spotifyThisSong();
+    // spotifyThisSong();
+    // movieThis();
+    if (operation == 'spotify-this-song') {
+      return spotifyThisSong();
+    } else if (operation == 'concert-this') {
+       return concertThis();
+    } else if (operation == 'movie-this') {
+      return movieThis();
+    } else if (operation == 'do-what-it-says') {
+      return doWhatItSays();
+    }
 
   });
 
