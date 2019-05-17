@@ -40,7 +40,7 @@ function concertThis() {
 function spotifyThisSong() {
   let song = userInput;
   if (song === "") {
-    song = "The Sign ace of Base";
+    song = "The Sign Ace of Base";
 
     // console.log(data.tracks.items)
   }
@@ -69,6 +69,14 @@ function spotifyThisSong() {
 
 function movieThis() {
   let movie = userInput;
+  // let song = userInput;
+  if (movie === "") {
+    movie = "Mr. Nobody";
+    console.log("If you haven't watched Mr. Nobody, then you should: http://www.imdb.com/title/tt0485947/");
+    console.log("It's on Netflix!")
+
+    // console.log(data.tracks.items)
+  }
   axios.get("http://www.omdbapi.com/?t=" + movie + "&apikey=trilogy").then(function (response) {
     // for (var i=0; i < response.data.length; i++){
     // console.log(response.data);
