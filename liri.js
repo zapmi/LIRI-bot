@@ -25,8 +25,6 @@ if (operation == 'spotify-this-song') {
 function concertThis() {
   let artist = userInput;
   axios.get("https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp").then(function (response) {
-    // for (var i=0; i < response.data.length; i++){
-    // var result = JSON.parse(response.data[i]);
     // console.log(response.data);
 
     console.log("Venue: " + response.data[0].venue.name);
@@ -94,11 +92,11 @@ function doWhatItSays() {
     data = data.split(",");
     operation = data[0];
     userInput = data[1];
-    console.log(data);
-
-
+    // console.log(data[0] + " " + data[1]);
+    spotifyThisSong();
+    
   });
- 
+
 }
 
 
