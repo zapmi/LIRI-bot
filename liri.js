@@ -39,7 +39,7 @@ function concertThis() {
 //node liri.js spotify-this-song '<song name here>'
 function spotifyThisSong() {
   let song = userInput;
-  if (song === undefined) {
+  if (song === "") {
     song = "The Sign ace of Base";
 
     // console.log(data.tracks.items)
