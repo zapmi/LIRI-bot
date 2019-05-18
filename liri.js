@@ -10,7 +10,7 @@ const fs = require("fs");
 
 let operation = process.argv[2];
 let userInput = process.argv.splice(3, process.argv.length).join(" ");
-// let name;
+
 
 if (operation == 'spotify-this-song') {
   spotifyThisSong();
@@ -25,13 +25,11 @@ if (operation == 'spotify-this-song') {
 function concertThis() {
   let artist = userInput;
   axios.get("https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp").then(function (response) {
-    // console.log(response.data);
     console.log("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
     console.log("Venue: " + response.data[0].venue.name);
     console.log("Venue Location: " + response.data[0].venue.city + ", " + response.data[0].venue.country);
     console.log("Event date: " + moment(response.data[0].datetime).format("MMM Do YYYY"));
     console.log("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
-    // }
   })
 }
 
@@ -41,8 +39,6 @@ function spotifyThisSong() {
   let song = userInput;
   if (song === "") {
     song = "The Sign Ace of Base";
-
-    // console.log(data.tracks.items)
   }
   spotify.search({ type: 'track', query: song, limit: 1 }, function (err, data) {
 
@@ -69,17 +65,13 @@ function spotifyThisSong() {
 
 function movieThis() {
   let movie = userInput;
-  // let song = userInput;
   if (movie === "") {
     movie = "Mr. Nobody";
     console.log("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
     console.log("If you haven't watched Mr. Nobody, then you should: http://www.imdb.com/title/tt0485947/");
     console.log("It's on Netflix!");
-    // console.log(data.tracks.items)
   }
   axios.get("http://www.omdbapi.com/?t=" + movie + "&apikey=trilogy").then(function (response) {
-    // for (var i=0; i < response.data.length; i++){
-    // console.log(response.data);
     console.log("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
     console.log("Title: " + response.data.Title);
     console.log("Release Year: " + response.data.Year);
@@ -90,8 +82,6 @@ function movieThis() {
     console.log("Plot: " + response.data.Plot);
     console.log("Actors: " + response.data.Actors);
     console.log("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
-    // }
-
   });
 }
 
@@ -106,9 +96,7 @@ function doWhatItSays() {
     data = data.split(",");
     operation = data[0];
     userInput = data[1];
-    // console.log(data[0] + " " + data[1]);
-    // spotifyThisSong();
-    // movieThis();
+
     if (operation == 'spotify-this-song') {
       return spotifyThisSong();
     } else if (operation == 'concert-this') {
@@ -121,6 +109,3 @@ function doWhatItSays() {
 
 }
 
-
-// module.exports = spotifyThisSong;
-/********************************************************************************* */
