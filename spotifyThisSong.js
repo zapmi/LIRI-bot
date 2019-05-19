@@ -5,14 +5,8 @@ const keys = require("./keys.js");
 // const axios = require("axios");
 const Spotify = require('node-spotify-api');
 const spotify = new Spotify(keys.spotify);
-// const request = require("request");
-// const moment = require('moment');
-// const fs = require("fs");
 
-//spotify-this-song
-//node liri.js spotify-this-song '<song name here>'
-function spotifyThisSong() {
-    let userInput = process.argv.splice(3, process.argv.length).join(" ");
+function spotifyThisSong(userInput) {
     let song = userInput;
     if (song === "") {
         song = "The Sign Ace of Base";
