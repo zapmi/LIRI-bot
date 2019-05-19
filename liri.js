@@ -1,6 +1,6 @@
 require("dotenv").config();
-var movieThis = require("./movieThis");
-var concertThis = require("./concertThis");
+let movieThis = require("./movieThis");
+let concertThis = require("./concertThis");
 
 // const keys = require("./keys.js");
 // const axios = require("axios");

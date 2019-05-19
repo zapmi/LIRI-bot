@@ -8,9 +8,10 @@ const axios = require("axios");
 const moment = require('moment');
 // const fs = require("fs");
 
-let userInput = process.argv.splice(3, process.argv.length).join(" ");
+
 
 function concertThis() {
+    let userInput = process.argv.splice(3, process.argv.length).join(" ");
     let artist = userInput;
     axios.get("https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp").then(function (response) {
         console.log("*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*");
