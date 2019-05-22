@@ -2,6 +2,8 @@
 
 Liri-bot is a node application that takes in commands and gives you back specific data.
 
+See screenshots folder for examples
+
 Commands:
 
 1.concert-this Artist/Band Name
